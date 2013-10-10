@@ -206,7 +206,7 @@ function showTextLabel(id)
 // -- Function Call: hideStickyNote('Advisory');
 function hideStickyNote(id)
 {
-   document.getElementById(id).parentElement.parentElement.parentElement.parentElement.style.display = 'none';
+	document.getElementById(id).parentElement.parentElement.parentElement.parentElement.style.display = 'none';
 }
 
 // Shows the given Sticky Note (ie. four parentElements).
@@ -218,5 +218,5 @@ function hideStickyNote(id)
 // -- Function Call: showStickyNote('Advisory');
 function showStickyNote(id)
 {
-   document.getElementById(id).parentElement.parentElement.parentElement.parentElement.style.display = '';
+	document.getElementById(id).parentElement.parentElement.parentElement.parentElement.style.display = '';
 }
