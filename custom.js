@@ -1,9 +1,3 @@
-// Rounds a number to the given decimal places
-function custRound(x, places)
-{
-	return (Math.round(x * Math.pow(10, places))) / Math.pow(10, places);
-}
-
 // Returns a string with a Greeting (eg. Good Morning) based on the current
 // system time.
 function greeting()
