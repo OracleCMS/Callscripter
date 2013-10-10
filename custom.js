@@ -7,7 +7,7 @@ function greeting()
 	var str;
 
 	// Between 4am and 12pm
-	if (d.getHours()= >= '4' && d.getHours() < '12')
+	if (d.getHours() >= '4' && d.getHours() < '12')
 		str = 'Good Morning';
 		
 	// Between 12pm and 6pm
