@@ -185,7 +185,7 @@ function hideTextLabel(id)
 	document.getElementById(id).parentElement.parentElement.style.display = 'none';
 }
 
-// Hides the given Text Label (ie. two parentElements).
+// Shows the given Text Label (ie. two parentElements).
 //
 // To use this, wrap your text label in <div> tags, giving the div an id.
 //
