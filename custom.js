@@ -1,13 +1,4 @@
-function calculateBMI(kilos, centimeters)
-{
-	var weight = eval(kilos);
-	var height = eval(centimeters);
-	var height2 = height / 100;
-	var BMI = weight / (height2 * height2);
-
-	return custRound(BMI, 2);
-}
-
+// Rounds a number to the given decimal places
 function custRound(x, places)
 {
 	return (Math.round(x * Math.pow(10, places))) / Math.pow(10, places);
@@ -74,11 +65,11 @@ function formatTelNumber(telNumber)
 	// Make number uppercase (in the case of 'DECLINED' being entered).
 	temp = temp.toUpperCase();
 	
-	// If tel number is blank or declined, just remove whitespace.
+	// If number is blank or declined, just remove whitespace.
 	if (temp == '' || temp == 'DECLINED')
 		return temp;
 	
-	// Check whether tel number is valid.
+	// Check whether number is valid.
 	if (!isValidTelNumber(temp))
 	{
 		alert('Invalid Tel Number. Tel numbers should be 10 digits including STD!');
@@ -152,10 +143,89 @@ function formatMobileTelNumber(mobileTelNumber)
 
 // Checks to see whether at least one phone number is valid.
 // First argument for Tel Number, second argument for Mobile Tel Number.
+// This is designed to be used with a Conditional Button.
 function isValidPhones(telNumber, mobileTelNumber)
 {
 	if (isValidTelNumber(telNumber) || isValidMobileTelNumber(mobileTelNumber))
 		return true;
 	else
 		return false;
+}
+
+// Hides the div with the given id. (ie. no parentElements)
+function hideDiv(id)
+{
+	document.getElementById(id).style.display = 'none';
+}
+
+// Shows the div with the given id. (ie. no parentElements)
+function showDiv(id)
+{
+	document.getElementById(id).style.display = '';
+}
+
+// Hides the given CallScripter Object (ie. two parentElements)
+// TODO: I would like to find a better solution for this one.
+//
+// -- Example Usage: hideCSObject(getCSObject([Button]));
+function hideCSObject(obj)
+{
+	obj.parentElement.parentElement.style.display = 'none';
+}
+
+// Shows the given CallScripter Object (ie. two parentElements)
+// TODO: I would like to find a better solution for this one.
+//
+// -- Example Usage: showCSObject(getCSObject([Button]));
+function showCSObject(obj)
+{
+	obj.parentElement.parentElement.style.display = '';
+}
+
+// Hides the given Text Label (ie. two parentElements).
+//
+// To use this, wrap your text label in <div> tags, giving the div an id.
+//
+// -- Example Usage:
+// -- Text Label: <div id=Advisory>Here is some text</div>
+// -- Function Call: hideTextLabel('Advisory');
+function hideTextLabel(id)
+{
+	document.getElementById(id).parentElement.parentElement.style.display = 'none';
+}
+
+// Hides the given Text Label (ie. two parentElements).
+//
+// To use this, wrap your text label in <div> tags, giving the div an id.
+//
+// -- Example Usage:
+// -- Text Label: <div id=Advisory>Here is some text</div>
+// -- Function Call: showTextLabel('Advisory');
+function showTextLabel(id)
+{
+	document.getElementById(id).parentElement.parentElement.style.display = '';
+}
+
+// Hides the given Sticky Note (ie. four parentElements).
+//
+// To use this, wrap your sticky note text in <div> tags, giving the div an id.
+//
+// -- Example Usage:
+// -- Sticky Note Text: <div id=Advisory>Agent Note: Hello</div>
+// -- Function Call: hideStickyNote('Advisory');
+function hideStickyNote(id)
+{
+   document.getElementById(id).parentElement.parentElement.parentElement.parentElement.style.display = 'none';
+}
+
+// Shows the given Sticky Note (ie. four parentElements).
+//
+// To use this, wrap your sticky note text in <div> tags, giving the div an id.
+//
+// -- Example Usage:
+// -- Sticky Note Text: <div id=Advisory>Agent Note: Hello</div>
+// -- Function Call: showStickyNote('Advisory');
+function showStickyNote(id)
+{
+   document.getElementById(id).parentElement.parentElement.parentElement.parentElement.style.display = '';
 }
