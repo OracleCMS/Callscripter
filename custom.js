@@ -114,7 +114,7 @@ function formatMobileTelNumber(mobileTelNumber)
 	// Make number uppercase (in the case of 'DECLINED' being entered).
 	temp = temp.toUpperCase();
 	
-	// If number is blank or declined, do nothing.
+	// If number is blank or declined, just remove whitespace.
 	if (temp == '' || temp == 'DECLINED')
 		return temp;
 		
