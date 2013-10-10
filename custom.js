@@ -7,15 +7,15 @@ function greeting()
 	var str;
 
 	// Between 4am and 12pm
-	if (d.getHours() < '12' && d.getHours() > '4')
+	if (d.getHours()= >= '4' && d.getHours() < '12')
 		str = 'Good Morning';
 		
 	// Between 12pm and 6pm
-	else if (d.getHours() >= '12' && d.getHours() <= '18')
+	else if (d.getHours() >= '12' && d.getHours() < '18')
 		str = 'Good Afternoon';
 		
 	// Between 6pm and 10pm
-	else if (d.getHours() > '18' && d.getHours() <= '22')
+	else if (d.getHours() >= '18' && d.getHours() < '22')
 		str = 'Good Evening';
 		
 	// All others
@@ -34,7 +34,7 @@ function isValidTelNumber(telNumber)
 	// Make number uppercase (in the case of 'DECLINED' being entered).
 	temp = temp.toUpperCase();
 	
-	// Return true/false whether tel number is valid.
+	// Return true/false whether number is valid.
 	if (temp == 'DECLINED')
 		return true;
 	else
@@ -89,7 +89,7 @@ function isValidMobileTelNumber(mobileTelNumber)
 	// Make number uppercase (in the case of 'DECLINED' being entered).
 	temp = temp.toUpperCase();
 	
-	// Return true/false whether mobile tel number is valid.
+	// Return true/false whether number is valid.
 	if (temp == 'DECLINED')
 		return true;
 	else
