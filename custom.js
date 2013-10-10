@@ -140,10 +140,7 @@ function formatMobileTelNumber(mobileTelNumber)
 // This is designed to be used with a Conditional Button.
 function isValidPhones(telNumber, mobileTelNumber)
 {
-	if (isValidTelNumber(telNumber) || isValidMobileTelNumber(mobileTelNumber))
-		return true;
-	else
-		return false;
+	return isValidTelNumber(telNumber) || isValidMobileTelNumber(mobileTelNumber);
 }
 
 // Hides the div with the given id. (ie. no parentElements)
