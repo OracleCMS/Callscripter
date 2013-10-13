@@ -263,3 +263,48 @@ function formatEmail(email)
 	return temp;
 }
 
+// Returns true/false whether it is currently after hours.
+// startTime = start of business hours. eg. '09:00'
+// endTime = end of business hours. eg. '17:00'
+function isAfterHoursTime(startTime, endTime)
+{
+	//var Days = new Array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
+	var Today = new Date();
+	//var DayOfWeek = Days[ Today.getDay() ];
+	
+	// Sunday and Saturday always after hours.
+	if (Today.getDay() == 0 || Today.getDay() == 6)
+		return true;
+	
+	var now = new Date();
+	var a = now.getHours();
+	if (a < 10) a = '0' + a;
+	var b = now.getMinutes();
+	if (b < 10) b = '0' + b;
+	
+	var time = a+':'+b;
+	
+	// Day must be Monday to Friday.
+	if (time < startTime || time > endTime)
+		return true;
+	else
+		return false;
+}
+
+// Returns true/false whether it is currently after hours
+// with a default value of 9am to 5pm.
+function isAfterHours()
+{
+	return isAfterHoursTime('09:00', '17:05');
+}
+
+// Returns 'Weekend' if today is Saturday or Sunday.
+// Returns 'Weekday' otherwise.
+function getDayType()
+{
+	var Today = new Date();
+	if (Today.getDay() == 0 || Today.getDay() == 6)
+		return 'Weekend';
+	else
+		return 'Weekday';
+}
