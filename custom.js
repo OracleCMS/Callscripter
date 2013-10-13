@@ -220,3 +220,39 @@ function showStickyNote(id)
 {
 	document.getElementById(id).parentElement.parentElement.parentElement.parentElement.style.display = '';
 }
+
+// Validates an email address. Returns true if valid, false if not.
+function isValidEmail(email)
+{
+	if(email.search(/[A-Za-z0-9_.-]+@[A-Za-z0-9_.-]+\.[A-Za-z0-9_.-]+/gi) != 0)
+		return false;
+	else
+		return true;
+}
+
+// Formats an email address. Returns formatted string if email
+// is valid, or the same string with an alert() if not.
+//
+// -- Example Usage: [E-Mail Address] = formatEmail([E-Mail Address]);
+function formatEmail(email)
+{
+	// Remove whitespace from string
+	var temp = email.replace(/\s+/g, '');
+	
+	// Make email lowercase
+	temp = temp.toLowerCase();
+	
+	// If email is blank, just remove whitespace.
+	if (temp == '')
+		return temp;
+		
+	// Check whether number is valid.
+	if (!isValidEmail(temp))
+	{
+		alert('Invalid Email Address!');
+		return email; // <- don't change string
+	}
+	
+	return temp;
+}
+
