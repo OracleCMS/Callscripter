@@ -224,6 +224,13 @@ function showStickyNote(id)
 // Validates an email address. Returns true if valid, false if not.
 function isValidEmail(email)
 {
+	// Remove whitespace from string
+	var temp = email.replace(/\s+/g, '');
+	
+	// Make email lowercase
+	temp = temp.toLowerCase();
+	
+	// Return true/false whether email is valid.
 	if(email.search(/[A-Za-z0-9_.-]+@[A-Za-z0-9_.-]+\.[A-Za-z0-9_.-]+/gi) != 0)
 		return false;
 	else
