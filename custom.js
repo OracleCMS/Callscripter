@@ -231,7 +231,7 @@ function isValidEmail(email)
 	temp = temp.toLowerCase();
 	
 	// Return true/false whether email is valid.
-	if(email.search(/[A-Za-z0-9_.-]+@[A-Za-z0-9_.-]+\.[A-Za-z0-9_.-]+/gi) != 0)
+	if (temp.search(/[A-Za-z0-9_.-]+@[A-Za-z0-9_.-]+\.[A-Za-z0-9_.-]+/gi) != 0)
 		return false;
 	else
 		return true;
