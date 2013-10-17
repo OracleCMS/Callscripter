@@ -308,3 +308,51 @@ function getDayType()
 	else
 		return 'Weekday';
 }
+
+// Formats a mobile telephone number into an SMS email address.
+// eg. 0400 111 222 = 61400111222@sms.oraclecms.com
+function formatSMS(mobileTelNumber)
+{
+	// Remove whitespace from string
+	var temp = mobileTelNumber.replace(/\s+/g, '');
+	
+	// Check if string contains numbers only
+	if (!temp.test(/^\d+$/))
+	{
+		// Check if number is in format: 61400111222, return 61400111222@sms.oraclecms.com
+		if (temp.substring(0, 2) == '61' && isValidMobileTelNumber('0' + temp.substring(2)))
+			return temp + '@sms.oraclecms.com';
+		// Check if number is in format: 0400111222, return 61400111222@sms.oraclecms.com
+		else if (isValidMobileTelNumber(temp))
+			return '61' + temp.substring(1) + '@sms.oraclecms.com';
+		// If number format is invalid, return false.
+		else
+			return false;
+	}
+	// String contains non-digits, return false.
+	else
+		return false;
+}
+
+// Returns true if string is a valid SMS email address, false if not.
+function isValidSMS(sms)
+{
+	return sms.test(/^61\d{9}@sms\.oraclecms\.com$/);
+}
+
+// Should accept only 03, 04, 06, 07, 09 - plus 7 digits - xx xxx xxxx
+function formatNZTelNumber(nzTelNumber)
+{
+
+}
+
+// Should accept only 02, - plus 7 to 9 digits - xxx xxx xxx / xxx xxxx xxx / xxx xxxx xxxx
+function formatNZMobileTelNumber(nzMobileTelNumber)
+{
+
+}
+
+function formatPager(pager)
+{
+
+}
