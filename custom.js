@@ -47,6 +47,10 @@ function isValidTelNumber(telNumber)
 	// Remove whitespace from string
 	var temp = telNumber.replace(/\s+/g, '');
 	
+	// Check if blank
+	if (temp == '')
+		return 'Please enter Tel Number.';
+	
 	// Make number uppercase (in the case of 'DECLINED' being entered).
 	temp = temp.toUpperCase();
 	
@@ -102,6 +106,10 @@ function isValidMobileTelNumber(mobileTelNumber)
 {
 	// Remove whitespace from string
 	var temp = mobileTelNumber.replace(/\s+/g, '');
+	
+	// Check if blank
+	if (temp == '')
+		return 'Please enter Mobile Tel Number.';
 	
 	// Make number uppercase (in the case of 'DECLINED' being entered).
 	temp = temp.toUpperCase();
@@ -245,6 +253,10 @@ function isValidEmail(email)
 	// Remove whitespace from string
 	var temp = email.replace(/\s+/g, '');
 	
+	// Check if blank
+	if (temp == '')
+		return 'Please enter Email Address.';
+	
 	// Make email lowercase
 	temp = temp.toLowerCase();
 	
@@ -366,6 +378,10 @@ function isValidNZTelNumber(nzTelNumber)
 	// Remove whitespace from string
 	var temp = nzTelNumber.replace(/\s+/g, '');
 	
+	// Check if blank
+	if (temp == '')
+		return 'Please enter NZ Tel Number.';
+	
 	// Make number uppercase (in the case of 'DECLINED' being entered).
 	temp = temp.toUpperCase();
 	
@@ -423,6 +439,10 @@ function isValidNZMobileTelNumber(nzMobileTelNumber)
 {
 	// Remove whitespace from string
 	var temp = nzMobileTelNumber.replace(/\s+/g, '');
+	
+	// Check if blank
+	if (temp == '')
+		return 'Please enter NZ Mobile Tel Number.';
 	
 	// Make number uppercase (in the case of 'DECLINED' being entered).
 	temp = temp.toUpperCase();
