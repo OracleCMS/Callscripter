@@ -317,7 +317,7 @@ function formatSMS(mobileTelNumber)
 	var temp = mobileTelNumber.replace(/\s+/g, '');
 	
 	// Check if string contains numbers only
-	if (!temp.test(/^\d+$/))
+	if ((/^\d+$/).test(temp))
 	{
 		// Check if number is in format: 61400111222, return 61400111222@sms.oraclecms.com
 		if (temp.substring(0, 2) == '61' && isValidMobileTelNumber('0' + temp.substring(2)))
@@ -335,24 +335,146 @@ function formatSMS(mobileTelNumber)
 }
 
 // Returns true if string is a valid SMS email address, false if not.
+// Format: 61#########@sms.oraclecms.com (Australia)
 function isValidSMS(sms)
 {
-	return sms.test(/^61\d{9}@sms\.oraclecms\.com$/);
+	return (/^61\d{9}@sms\.oraclecms\.com$/).test(sms);
 }
 
+// Validates a New Zealand telephone (landline) number. Returns true if valid, false if not.
 // Should accept only 03, 04, 06, 07, 09 - plus 7 digits - xx xxx xxxx
+function isValidNZTelNumber(nzTelNumber)
+{
+	// Remove whitespace from string
+	var temp = nzTelNumber.replace(/\s+/g, '');
+	
+	// Make number uppercase (in the case of 'DECLINED' being entered).
+	temp = temp.toUpperCase();
+	
+	// Return true/false whether number is valid.
+	if (temp == 'DECLINED')
+		return true;
+	else
+	{
+		// Regex - must start with 03, 04, 06, 07, or 09, then 7 digits
+		var phonePattern = /^0[34679]\d{7}$/g;
+		
+		// Test and return result.
+		return phonePattern.test(temp);
+	}
+}
+
+// Formats a New Zealand telephone (landline) number. Returns formatted string if number
+// is valid, or the same string with an alert() if not.
+// Should accept only 03, 04, 06, 07, 09 - plus 7 digits - xx xxx xxxx
+//
+// -- Example Usage: [Tel Number] = formatNZTelNumber([Tel Number]);
 function formatNZTelNumber(nzTelNumber)
 {
-
+	// Remove whitespace from string
+	var temp = nzTelNumber.replace(/\s+/g, '');
+	
+	// Make number uppercase (in the case of 'DECLINED' being entered).
+	temp = temp.toUpperCase();
+	
+	// If number is blank or declined, just remove whitespace.
+	if (temp == '' || temp == 'DECLINED')
+		return temp;
+	
+	// Check whether number is valid.
+	if (!isValidNZTelNumber(temp))
+	{
+		alert('Invalid NZ Tel Number. NZ Tel numbers should be 9 digits including STD!');
+		return nzTelNumber; // <- don't change string
+	}
+	
+	// Format number as '## ### ####'.
+	var output = temp.substring(0, 2)
+				 + ' '
+				 + temp.substring(2, 5)
+				 + ' '
+				 + temp.substring(5);
+				 
+	return output;
 }
 
+// Validates a New Zealand mobile telephone number. Returns true if valid, false if not.
 // Should accept only 02, - plus 7 to 9 digits - xxx xxx xxx / xxx xxxx xxx / xxx xxxx xxxx
+function isValidNZMobileTelNumber(nzMobileTelNumber)
+{
+	// Remove whitespace from string
+	var temp = nzMobileTelNumber.replace(/\s+/g, '');
+	
+	// Make number uppercase (in the case of 'DECLINED' being entered).
+	temp = temp.toUpperCase();
+	
+	// Return true/false whether number is valid.
+	if (temp == 'DECLINED')
+		return true;
+	else
+	{
+		// Regex - must start with 02, then 7 to 9 digits
+		var phonePattern = /^02(\d{7}|\d{8}|\d{9})$/g;
+		
+		// Test and return result.
+		return phonePattern.test(temp);
+	}	
+}
+
+// Formats a mobile telephone number. Returns formatted string if number
+// is valid, or the same string with an alert() if not.
+// Should accept only 02, - plus 7 to 9 digits - xxx xxx xxx / xxx xxxx xxx / xxx xxxx xxxx
+//
+// -- Example Usage: [Mobile Tel Number] = formatNZMobileTelNumber([Mobile Tel Number]);
 function formatNZMobileTelNumber(nzMobileTelNumber)
 {
-
+	// Remove whitespace from string
+	var temp = nzTelNumber.replace(/\s+/g, '');
+	
+	// Make number uppercase (in the case of 'DECLINED' being entered).
+	temp = temp.toUpperCase();
+	
+	// If number is blank or declined, just remove whitespace.
+	if (temp == '' || temp == 'DECLINED')
+		return temp;
+	
+	// Check whether number is valid.
+	if (!isValidNZMobileTelNumber(temp))
+	{
+		alert('Invalid NZ Mobile Tel Number. NZ Mobile Tel numbers should start with 02!');
+		return nzMobileTelNumber; // <- don't change string
+	}
+	
+	// Format number as ### ### ### / ### #### ### / ### #### ####.
+	var gap;
+	
+	// Add a gap before 6th (zero-index) number
+	if (temp.length == 9)
+		gap = 6;
+	// Add a gap before 7th (zero-index) number
+	else if (temp.length == 10 || temp.length == 11)
+		gap = 7;
+	
+	// Build output
+	var output = '';
+	
+	for (var i = 0; i < temp.length; ++i)
+	{
+		// Add a gap where needed
+		if (i == 2 || i == gap)
+			output += ' ';
+		
+		// Append next character
+		output += temp[i];
+	}
+	
+	// Return output string
+	return output;
 }
 
-function formatPager(pager)
+// Returns true if string is a valid Pager email address, false if not.
+// Format: ######.0000@e2m.hutch.com.au
+function isValidPager(pager)
 {
-
+	return (/^\d{6}\.0000@e2m\.hutch\.com\.au$/).test(pager);
 }
