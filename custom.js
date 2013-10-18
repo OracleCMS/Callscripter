@@ -1,5 +1,7 @@
 // Visit this URL to see a test script with all these functions:
 // http://192.168.80.226/executer/script.aspx?function=start&script=1045
+// This code is included in every script. DO NOT MAKE ADDITIONS OR CHANGES
+// WITHOUT TESTING WITHIN A TEST SCRIPT FIRST.
 
 // Returns a string with a Greeting (eg. Good Morning) based on the hours
 // value given.
