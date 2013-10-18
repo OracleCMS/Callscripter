@@ -25,7 +25,7 @@ function greeting()
 	return str;
 }
 
-// Validates a telephone (landline) number. Returns true if valid, false if not.
+// Validates a telephone (landline) number. Returns true if valid, or an error message if not.
 function isValidTelNumber(telNumber)
 {
 	// Remove whitespace from string
@@ -43,12 +43,16 @@ function isValidTelNumber(telNumber)
 		var phonePattern = /^0[0-8]\d{8}$/g;
 		
 		// Test and return result.
-		return phonePattern.test(temp);
+		if (phonePattern.test(temp))
+			return true;
+		else
+			return 'Invalid Tel Number. Tel numbers should be 10 digits including STD!';
 	}
 }
 
 // Formats a telephone (landline) number. Returns formatted string if number
-// is valid, or the same string with an alert() if not.
+// is valid, or the same string if not. Should be used with isValidTelNumber
+// to check for errors.
 //
 // -- Example Usage: [Tel Number] = formatTelNumber([Tel Number]);
 function formatTelNumber(telNumber)
@@ -64,11 +68,8 @@ function formatTelNumber(telNumber)
 		return temp;
 	
 	// Check whether number is valid.
-	if (!isValidTelNumber(temp))
-	{
-		alert('Invalid Tel Number. Tel numbers should be 10 digits including STD!');
+	if (isValidTelNumber(temp) != true)
 		return telNumber; // <- don't change string
-	}
 	
 	// Format number as '## #### ####'.
 	var output = temp.substring(0, 2)
@@ -80,7 +81,7 @@ function formatTelNumber(telNumber)
 	return output;
 }
 
-// Validates a mobile telephone number. Returns true if valid, false if not.
+// Validates a mobile telephone number. Returns true if valid, or an error message if not.
 function isValidMobileTelNumber(mobileTelNumber)
 {
 	// Remove whitespace from string
@@ -98,12 +99,16 @@ function isValidMobileTelNumber(mobileTelNumber)
 		var phonePattern = /^04\d{8}$/g;
 		
 		// Test and return result.
-		return phonePattern.test(temp);
+		if (phonePattern.test(temp))
+			return true;
+		else
+			return 'Invalid Mobile Tel Number. Mobile numbers should start with 04 followed by 8 digits!';
 	}
 }
 
 // Formats a mobile telephone number. Returns formatted string if number
-// is valid, or the same string with an alert() if not.
+// is valid, or the same string if not. Should be used with isValidMobileTelNumber
+// to check for errors.
 //
 // -- Example Usage: [Mobile Tel Number] = formatMobileTelNumber([Mobile Tel Number]);
 function formatMobileTelNumber(mobileTelNumber)
@@ -119,11 +124,8 @@ function formatMobileTelNumber(mobileTelNumber)
 		return temp;
 		
 	// Check whether number is valid.
-	if (!isValidMobileTelNumber(temp))
-	{
-		alert('Invalid Mobile Tel Number. Mobile numbers should begin with 04!');
+	if (isValidMobileTelNumber(temp) != true)
 		return mobileTelNumber; // <- don't change string
-	}
 	
 	// Format number as '#### ### ###'.
 	var output = temp.substring(0, 4)
@@ -140,7 +142,7 @@ function formatMobileTelNumber(mobileTelNumber)
 // This is designed to be used with a Conditional Button.
 function isValidPhones(telNumber, mobileTelNumber)
 {
-	return isValidTelNumber(telNumber) || isValidMobileTelNumber(mobileTelNumber);
+	return (isValidTelNumber(telNumber) == true) || (isValidMobileTelNumber(mobileTelNumber) == true);
 }
 
 // Hides the div with the given id. (ie. no parentElements)
@@ -232,13 +234,14 @@ function isValidEmail(email)
 	
 	// Return true/false whether email is valid.
 	if (temp.search(/[A-Za-z0-9_.-]+@[A-Za-z0-9_.-]+\.[A-Za-z0-9_.-]+/gi) != 0)
-		return false;
+		return 'Invalid Email Address!';
 	else
 		return true;
 }
 
 // Formats an email address. Returns formatted string if email
-// is valid, or the same string with an alert() if not.
+// is valid, or the same string if not. Should be used with isValidEmail
+// to check for errors.
 //
 // -- Example Usage: [E-Mail Address] = formatEmail([E-Mail Address]);
 function formatEmail(email)
@@ -254,11 +257,8 @@ function formatEmail(email)
 		return temp;
 		
 	// Check whether number is valid.
-	if (!isValidEmail(temp))
-	{
-		alert('Invalid Email Address!');
+	if (isValidEmail(temp) != true)
 		return email; // <- don't change string
-	}
 	
 	return temp;
 }
@@ -360,12 +360,16 @@ function isValidNZTelNumber(nzTelNumber)
 		var phonePattern = /^0[34679]\d{7}$/g;
 		
 		// Test and return result.
-		return phonePattern.test(temp);
+		if (phonePattern.test(temp))
+			return true;
+		else
+			return 'Invalid NZ Tel Number. NZ Tel numbers should be 9 digits including STD!';
 	}
 }
 
 // Formats a New Zealand telephone (landline) number. Returns formatted string if number
-// is valid, or the same string with an alert() if not.
+// is valid, or the same string if not. Should be used with isValidNZTelNumber
+// to check for errors.
 // Should accept only 03, 04, 06, 07, 09 - plus 7 digits - xx xxx xxxx
 //
 // -- Example Usage: [Tel Number] = formatNZTelNumber([Tel Number]);
@@ -382,11 +386,8 @@ function formatNZTelNumber(nzTelNumber)
 		return temp;
 	
 	// Check whether number is valid.
-	if (!isValidNZTelNumber(temp))
-	{
-		alert('Invalid NZ Tel Number. NZ Tel numbers should be 9 digits including STD!');
+	if (isValidNZTelNumber(temp) != true)
 		return nzTelNumber; // <- don't change string
-	}
 	
 	// Format number as '## ### ####'.
 	var output = temp.substring(0, 2)
@@ -417,12 +418,16 @@ function isValidNZMobileTelNumber(nzMobileTelNumber)
 		var phonePattern = /^02(\d{7}|\d{8}|\d{9})$/g;
 		
 		// Test and return result.
-		return phonePattern.test(temp);
-	}	
+		if (phonePattern.test(temp))
+			return true;
+		else
+			return 'Invalid NZ Mobile Tel Number. NZ Mobile Tel numbers should start with 02 followed by 7 to 9 digits!';
+	}
 }
 
 // Formats a mobile telephone number. Returns formatted string if number
-// is valid, or the same string with an alert() if not.
+// is valid, or the same string if not. Should be used with isValidNZMobileTelNumber
+// to check for errors.
 // Should accept only 02, - plus 7 to 9 digits - xxx xxx xxx / xxx xxxx xxx / xxx xxxx xxxx
 //
 // -- Example Usage: [Mobile Tel Number] = formatNZMobileTelNumber([Mobile Tel Number]);
@@ -439,11 +444,8 @@ function formatNZMobileTelNumber(nzMobileTelNumber)
 		return temp;
 	
 	// Check whether number is valid.
-	if (!isValidNZMobileTelNumber(temp))
-	{
-		alert('Invalid NZ Mobile Tel Number. NZ Mobile Tel numbers should start with 02!');
+	if (isValidNZMobileTelNumber(temp) != true)
 		return nzMobileTelNumber; // <- don't change string
-	}
 	
 	// Format number as ### ### ### / ### #### ### / ### #### ####.
 	var gap;
@@ -470,6 +472,14 @@ function formatNZMobileTelNumber(nzMobileTelNumber)
 	
 	// Return output string
 	return output;
+}
+
+// Checks to see whether at least one phone number is valid.
+// First argument for Tel Number, second argument for Mobile Tel Number.
+// This is designed to be used with a Conditional Button.
+function isValidNZPhones(nzTelNumber, nzMobileTelNumber)
+{
+	return (isValidNZTelNumber(nzTelNumber) == true) || (isValidNZMobileTelNumber(nzMobileTelNumber) == true);
 }
 
 // Returns true if string is a valid Pager email address, false if not.
