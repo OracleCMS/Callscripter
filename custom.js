@@ -1,28 +1,43 @@
+// Returns a string with a Greeting (eg. Good Morning) based on the hours
+// value given.
+function greetingTime(hours)
+{
+	// Create a Date object.
+	var d = new Date();
+	
+	// Set hours to the one specified.
+	d.setHours(hours);
+	
+	var output;
+
+	// Between 4am and 12pm
+	if (d.getHours() >= '4' && d.getHours() < '12')
+		output = 'Good Morning';
+		
+	// Between 12pm and 6pm
+	else if (d.getHours() >= '12' && d.getHours() < '18')
+		output = 'Good Afternoon';
+		
+	// Between 6pm and 10pm
+	else if (d.getHours() >= '18' && d.getHours() < '22')
+		output = 'Good Evening';
+		
+	// All others
+	else
+		output = 'Hello';
+	
+	return output;
+}
+
 // Returns a string with a Greeting (eg. Good Morning) based on the current
 // system time.
 function greeting()
 {
 	// Get current date and time
 	var d = new Date();
-	var str;
-
-	// Between 4am and 12pm
-	if (d.getHours() >= '4' && d.getHours() < '12')
-		str = 'Good Morning';
-		
-	// Between 12pm and 6pm
-	else if (d.getHours() >= '12' && d.getHours() < '18')
-		str = 'Good Afternoon';
-		
-	// Between 6pm and 10pm
-	else if (d.getHours() >= '18' && d.getHours() < '22')
-		str = 'Good Evening';
-		
-	// All others
-	else
-		str = 'Hello';
 	
-	return str;
+	// Return a greeting string given the current hours
+	return greetingTime(d.getHours());
 }
 
 // Validates a telephone (landline) number. Returns true if valid, or an error message if not.
@@ -434,7 +449,7 @@ function isValidNZMobileTelNumber(nzMobileTelNumber)
 function formatNZMobileTelNumber(nzMobileTelNumber)
 {
 	// Remove whitespace from string
-	var temp = nzTelNumber.replace(/\s+/g, '');
+	var temp = nzMobileTelNumber.replace(/\s+/g, '');
 	
 	// Make number uppercase (in the case of 'DECLINED' being entered).
 	temp = temp.toUpperCase();
@@ -467,7 +482,7 @@ function formatNZMobileTelNumber(nzMobileTelNumber)
 			output += ' ';
 		
 		// Append next character
-		output += temp[i];
+		output += temp.charAt(i);
 	}
 	
 	// Return output string
