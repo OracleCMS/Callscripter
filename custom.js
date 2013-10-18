@@ -6,7 +6,8 @@ function greetingTime(hours)
 	var d = new Date();
 	
 	// Set hours to the one specified.
-	d.setHours(hours);
+	if (hours !== undefined)
+		d.setHours(hours);
 	
 	var output;
 
