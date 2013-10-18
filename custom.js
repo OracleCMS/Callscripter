@@ -238,7 +238,7 @@ function showStickyNote(id)
 	document.getElementById(id).parentElement.parentElement.parentElement.parentElement.style.display = '';
 }
 
-// Validates an email address. Returns true if valid, false if not.
+// Validates an email address. Returns true if valid, or an error message if not.
 function isValidEmail(email)
 {
 	// Remove whitespace from string
@@ -247,8 +247,10 @@ function isValidEmail(email)
 	// Make email lowercase
 	temp = temp.toLowerCase();
 	
-	// Return true/false whether email is valid.
-	if (temp.search(/[A-Za-z0-9_.-]+@[A-Za-z0-9_.-]+\.[A-Za-z0-9_.-]+/gi) != 0)
+	// Return true/error whether email is valid.
+	if (temp == 'declined')
+		return true;
+	else if (temp.search(/[A-Za-z0-9_.-]+@[A-Za-z0-9_.-]+\.[A-Za-z0-9_.-]+/gi) != 0)
 		return 'Invalid Email Address!';
 	else
 		return true;
@@ -267,8 +269,8 @@ function formatEmail(email)
 	// Make email lowercase
 	temp = temp.toLowerCase();
 	
-	// If email is blank, just remove whitespace.
-	if (temp == '')
+	// If email is blank or declined, just remove whitespace.
+	if (temp == '' || temp == 'declined')
 		return temp;
 		
 	// Check whether number is valid.
@@ -356,7 +358,7 @@ function isValidSMS(sms)
 	return (/^61\d{9}@sms\.oraclecms\.com$/).test(sms);
 }
 
-// Validates a New Zealand telephone (landline) number. Returns true if valid, false if not.
+// Validates a New Zealand telephone (landline) number. Returns true if valid, or an error message if not.
 // Should accept only 03, 04, 06, 07, 09 - plus 7 digits - xx xxx xxxx
 function isValidNZTelNumber(nzTelNumber)
 {
@@ -414,7 +416,7 @@ function formatNZTelNumber(nzTelNumber)
 	return output;
 }
 
-// Validates a New Zealand mobile telephone number. Returns true if valid, false if not.
+// Validates a New Zealand mobile telephone number. Returns true if valid, or an error message if not.
 // Should accept only 02, - plus 7 to 9 digits - xxx xxx xxx / xxx xxxx xxx / xxx xxxx xxxx
 function isValidNZMobileTelNumber(nzMobileTelNumber)
 {
