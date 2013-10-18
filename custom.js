@@ -1,3 +1,6 @@
+// Visit this URL to see a test script with all these functions:
+// http://192.168.80.226/executer/script.aspx?function=start&script=1045
+
 // Returns a string with a Greeting (eg. Good Morning) based on the hours
 // value given.
 function greetingTime(hours)
