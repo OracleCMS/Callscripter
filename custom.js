@@ -319,7 +319,8 @@ function isAfterHoursTime(startTime, endTime)
 	
 	var time = a+':'+b;
 	
-	// Day must be Monday to Friday.
+	// At this point, day must be Monday to Friday.
+	// Check to see whether the time is not within business hours.
 	if (time < startTime || time > endTime)
 		return true;
 	else
