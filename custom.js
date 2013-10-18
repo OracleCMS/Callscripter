@@ -269,7 +269,7 @@ function formatEmail(email)
 	// Make email lowercase
 	temp = temp.toLowerCase();
 	
-	// If email is blank or declined, just remove whitespace.
+	// If email is blank or declined, just remove whitespace and make lowercase.
 	if (temp == '' || temp == 'declined')
 		return temp;
 		
@@ -337,10 +337,10 @@ function formatSMS(mobileTelNumber)
 	if ((/^\d+$/).test(temp))
 	{
 		// Check if number is in format: 61400111222, return 61400111222@sms.oraclecms.com
-		if (temp.substring(0, 2) == '61' && isValidMobileTelNumber('0' + temp.substring(2)))
+		if (temp.substring(0, 3) == '614' && isValidMobileTelNumber('0' + temp.substring(1)) == true)
 			return temp + '@sms.oraclecms.com';
 		// Check if number is in format: 0400111222, return 61400111222@sms.oraclecms.com
-		else if (isValidMobileTelNumber(temp))
+		else if (isValidMobileTelNumber(temp) == true)
 			return '61' + temp.substring(1) + '@sms.oraclecms.com';
 		// If number format is invalid, return false.
 		else
