@@ -266,7 +266,7 @@ function isValidEmail(email)
 	temp = temp.toLowerCase();
 	
 	// Return true/error whether email is valid.
-	if (temp == 'declined')
+	if (temp == 'declined' || temp == 'caller does not have email')
 		return true;
 	else if (temp.search(/[A-Za-z0-9_.-]+@[A-Za-z0-9_.-]+\.[A-Za-z0-9_.-]+/gi) != 0)
 		return 'Invalid Email Address!';
@@ -288,7 +288,7 @@ function formatEmail(email)
 	temp = temp.toLowerCase();
 	
 	// If email is blank or declined, just remove whitespace and make lowercase.
-	if (temp == '' || temp == 'declined')
+	if (temp == '' || temp == 'declined' || temp == 'caller does not have email')
 		return temp;
 		
 	// Check whether number is valid.
