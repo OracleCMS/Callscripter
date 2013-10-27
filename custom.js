@@ -47,6 +47,11 @@ function greeting()
 }
 
 // Validates a telephone (landline) number. Returns true if valid, or an error message if not.
+//
+// Note that you MUST explicitly test if the function returned true:
+// 		if (isValidTelNumber(_____) == true)
+// This is not sufficient:
+//		if (isValidTelNumber(_____))
 function isValidTelNumber(telNumber)
 {
 	// Remove whitespace from string
@@ -144,6 +149,11 @@ function formatTelNumber(telNumber)
 }
 
 // Validates a mobile telephone number. Returns true if valid, or an error message if not.
+//
+// Note that you MUST explicitly test if the function returned true:
+// 		if (isValidMobileTelNumber(_____) == true)
+// This is not sufficient:
+//		if (isValidMobileTelNumber(_____))
 function isValidMobileTelNumber(mobileTelNumber)
 {
 	// Remove whitespace from string
@@ -290,6 +300,11 @@ function showStickyNote(id)
 }
 
 // Validates an email address. Returns true if valid, or an error message if not.
+//
+// Note that you MUST explicitly test if the function returned true:
+// 		if (isValidEmail(_____) == true)
+// This is not sufficient:
+//		if (isValidEmail(_____))
 function isValidEmail(email)
 {
 	// Remove whitespace from string
@@ -421,6 +436,11 @@ function isValidSMS(sms)
 
 // Validates a New Zealand telephone (landline) number. Returns true if valid, or an error message if not.
 // Should accept only 03, 04, 06, 07, 09 - plus 7 digits - xx xxx xxxx
+//
+// Note that you MUST explicitly test if the function returned true:
+// 		if (isValidNZTelNumber(_____) == true)
+// This is not sufficient:
+//		if (isValidNZTelNumber(_____))
 function isValidNZTelNumber(nzTelNumber)
 {
 	// Remove whitespace from string
@@ -483,6 +503,11 @@ function formatNZTelNumber(nzTelNumber)
 
 // Validates a New Zealand mobile telephone number. Returns true if valid, or an error message if not.
 // Should accept only 02, - plus 7 to 9 digits - xxx xxx xxx / xxx xxxx xxx / xxx xxxx xxxx
+//
+// Note that you MUST explicitly test if the function returned true:
+// 		if (isValidNZMobileTelNumber(_____) == true)
+// This is not sufficient:
+//		if (isValidNZMobileTelNumber(_____))
 function isValidNZMobileTelNumber(nzMobileTelNumber)
 {
 	// Remove whitespace from string
@@ -583,8 +608,8 @@ function isValidPager(pager)
 // with new lines and then shows the final string in an alert popup box.
 //
 // All functions in this file return error strings that end in | for this purpose.
-function alertCS(errorString)
+function csalert(errorString)
 {
-	var temp = errorString.replace(/|/g, '\n');
+	var temp = errorString.replace(/\|/g, '\n');
 	alert(temp);
 }
