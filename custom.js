@@ -54,7 +54,7 @@ function isValidTelNumber(telNumber)
 	
 	// Check if blank
 	if (temp == '')
-		return 'Please enter Tel Number.';
+		return 'Please enter Tel Number.|';
 	
 	// Make number uppercase (in the case of 'DECLINED' being entered).
 	temp = temp.toUpperCase();
@@ -76,7 +76,7 @@ function isValidTelNumber(telNumber)
 			|| (/^13\d{4}$/).test(temp))
 			return true;
 		else
-			return 'Invalid Tel Number. Tel numbers should be 10 digits including STD!';
+			return 'Invalid Tel Number. Tel numbers should be 10 digits including STD!|';
 	}
 }
 
@@ -151,7 +151,7 @@ function isValidMobileTelNumber(mobileTelNumber)
 	
 	// Check if blank
 	if (temp == '')
-		return 'Please enter Mobile Tel Number.';
+		return 'Please enter Mobile Tel Number.|';
 	
 	// Make number uppercase (in the case of 'DECLINED' being entered).
 	temp = temp.toUpperCase();
@@ -168,7 +168,7 @@ function isValidMobileTelNumber(mobileTelNumber)
 		if (phonePattern.test(temp))
 			return true;
 		else
-			return 'Invalid Mobile Tel Number. Mobile numbers should start with 04 followed by 8 digits!';
+			return 'Invalid Mobile Tel Number. Mobile numbers should start with 04 followed by 8 digits!|';
 	}
 }
 
@@ -297,7 +297,7 @@ function isValidEmail(email)
 	
 	// Check if blank
 	if (temp == '')
-		return 'Please enter Email Address.';
+		return 'Please enter Email Address.|';
 	
 	// Make email lowercase
 	temp = temp.toLowerCase();
@@ -306,7 +306,7 @@ function isValidEmail(email)
 	if (temp == 'declined' || temp == 'caller does not have email')
 		return true;
 	else if (temp.search(/[A-Za-z0-9_.-]+@[A-Za-z0-9_.-]+\.[A-Za-z0-9_.-]+/gi) != 0)
-		return 'Invalid Email Address!';
+		return 'Invalid Email Address!|';
 	else
 		return true;
 }
@@ -428,7 +428,7 @@ function isValidNZTelNumber(nzTelNumber)
 	
 	// Check if blank
 	if (temp == '')
-		return 'Please enter NZ Tel Number.';
+		return 'Please enter NZ Tel Number.|';
 	
 	// Make number uppercase (in the case of 'DECLINED' being entered).
 	temp = temp.toUpperCase();
@@ -445,7 +445,7 @@ function isValidNZTelNumber(nzTelNumber)
 		if (phonePattern.test(temp))
 			return true;
 		else
-			return 'Invalid NZ Tel Number. NZ Tel numbers should be 9 digits including STD!';
+			return 'Invalid NZ Tel Number. NZ Tel numbers should be 9 digits including STD!|';
 	}
 }
 
@@ -490,7 +490,7 @@ function isValidNZMobileTelNumber(nzMobileTelNumber)
 	
 	// Check if blank
 	if (temp == '')
-		return 'Please enter NZ Mobile Tel Number.';
+		return 'Please enter NZ Mobile Tel Number.|';
 	
 	// Make number uppercase (in the case of 'DECLINED' being entered).
 	temp = temp.toUpperCase();
@@ -507,7 +507,7 @@ function isValidNZMobileTelNumber(nzMobileTelNumber)
 		if (phonePattern.test(temp))
 			return true;
 		else
-			return 'Invalid NZ Mobile Tel Number. NZ Mobile Tel numbers should start with 02 followed by 7 to 9 digits!';
+			return 'Invalid NZ Mobile Tel Number. NZ Mobile Tel numbers should start with 02 followed by 7 to 9 digits!|';
 	}
 }
 
@@ -573,4 +573,19 @@ function isValidNZPhones(nzTelNumber, nzMobileTelNumber)
 function isValidPager(pager)
 {
 	return (/^\d{6}\.0000@e2m\.hutch\.com\.au$/).test(pager);
+}
+
+// This function is to be used for showing error messages
+// in a conditional button.
+//
+// Since callscripter variables (eg. [var_temp]) cannot contain new lines,
+// this function works around this limitation by replacing | (pipe character)
+// with new lines and then shows the final string in an alert popup box.
+//
+// All functions in this file return error strings that end in | for this purpose.
+function alertCS(errorString)
+{
+	var temp = errorString;
+	temp = errorString.replace(/|/g, '\n');
+	alert(temp);
 }
