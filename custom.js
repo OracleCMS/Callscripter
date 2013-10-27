@@ -585,7 +585,6 @@ function isValidPager(pager)
 // All functions in this file return error strings that end in | for this purpose.
 function alertCS(errorString)
 {
-	var temp = errorString;
-	temp = errorString.replace(/|/g, '\n');
+	var temp = errorString.replace(/|/g, '\n');
 	alert(temp);
 }
