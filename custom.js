@@ -64,11 +64,16 @@ function isValidTelNumber(telNumber)
 		return true;
 	else
 	{
-		// Regex - must start with 0, next number between 0 and 8, then 8 digits
-		var phonePattern = /^0[0-8]\d{8}$/g;
+		// Phone number must start with 0, next number between 0 and 8, then 8 digits
+		// OR start with 130, 180, 190 then 7 digits
+		// OR start with 13, then 4 digits
 		
 		// Test and return result.
-		if (phonePattern.test(temp))
+		if ((/^0[0-8]\d{8}$/).test(temp)
+			|| (/^130\d{7}$/).test(temp)
+			|| (/^180\d{7}$/).test(temp)
+			|| (/^190\d{7}$/).test(temp)
+			|| (/^13\d{4}$/).test(temp))
 			return true;
 		else
 			return 'Invalid Tel Number. Tel numbers should be 10 digits including STD!';
@@ -96,12 +101,44 @@ function formatTelNumber(telNumber)
 	if (isValidTelNumber(temp) != true)
 		return telNumber; // <- don't change string
 	
-	// Format number as '## #### ####'.
-	var output = temp.substring(0, 2)
+	var output;
+	
+	switch (temp.length)
+	{
+	case 6:
+		// Format number as '### ###'
+		// (as in 13# ###)
+		output = temp.substring(0, 3)
 				 + ' '
-				 + temp.substring(2, 6)
-				 + ' '
-				 + temp.substring(6);
+				 + temp.substring(3, 6)
+		break;
+		
+	case 10:
+		// If number starts with 0, format as '## #### ####'
+		// (as in 03 #### ####, etc)
+		if (temp.charAt(0) == '0')
+		{
+			output = temp.substring(0, 2)
+					 + ' '
+					 + temp.substring(2, 6)
+					 + ' '
+					 + temp.substring(6);
+		}
+		// If number starts with 1, format number as '#### ### ###'
+		// (as in 1300 ### ###, etc)
+		else if (temp.charAt(0) == '1')
+		{
+			output = temp.substring(0, 4)
+					 + ' '
+					 + temp.substring(4, 7)
+					 + ' '
+					 + temp.substring(7);
+		}
+		break;
+		
+	default:
+		break;
+	}
 				 
 	return output;
 }
@@ -371,10 +408,15 @@ function formatSMS(mobileTelNumber)
 }
 
 // Returns true if string is a valid SMS email address, false if not.
-// Format: 61#########@sms.oraclecms.com (Australia)
+// Format: 614########@sms.oraclecms.com (Australia)
+//     or:  04########@sms.oraclecms.com (without country code)
 function isValidSMS(sms)
 {
-	return (/^61\d{9}@sms\.oraclecms\.com$/).test(sms);
+	if ((/^614\d{8}@sms\.oraclecms\.com$/).test(sms)
+		|| (/^04\d{8}@sms\.oraclecms\.com$/).test(sms))
+		return true;
+	else
+		return false;
 }
 
 // Validates a New Zealand telephone (landline) number. Returns true if valid, or an error message if not.
